@@ -19,7 +19,7 @@ const theme = extendTheme({
     columnFooterHeight: COLUMN_FOOTER_HEIGHT,
     columnHeaderHeight: COLUMN_HEADER_HEIGHT,
 
-    fontColorCustom: (mode) => (mode === 'light' ? '#000000' : '#FFFFFF'),
+    fontColorCustom: (mode) => (mode === 'light' ? '#000000' : '#0000'),
   },
   colorSchemeSelector: 'class',
   // cssVariables: {
