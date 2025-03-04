@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import ToolTip from '@mui/material/Tooltip'
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+
 import ExpanmoreIcon from '@mui/icons-material/ExpandMore'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -26,7 +27,7 @@ function Header() {
   const handleClick = (event) => { setAnchorEl(event.currentTarget) }
   const handleClose = () => { setAnchorEl(null) }
   return (
-    <Box sx={{
+    <Box  sx={{
       height: COLUMN_HEADER_HEIGHT,
       // p: 1,
       display: 'flex',
@@ -34,11 +35,15 @@ function Header() {
       justifyContent: 'space-between',
       // fontSize: '1.1rem',
       // fontWeight: 'bold',
+      // transform: 'rotate(90deg)',
     }}>
-      <Typography sx={{
+
+      <Typography variant="h5" component="div" sx={{
         fontSize: '1.1rem',
         fontWeight: 'bold',
         cursor: 'pointer',
+        textAlign: "center",
+        padding: '8px'
       }}>
         To do
       </Typography>
@@ -51,7 +56,7 @@ function Header() {
             aria-controls={open ? 'collapse-list' : undefined}
           />
         </ToolTip>
-        
+
         <ToolTip title="List actions" placement="bottom"> 
           <ExpanmoreIcon sx={{color: 'text.primary', cursor: 'pointer'}}
             id="basic-column-dropdown"

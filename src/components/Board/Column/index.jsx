@@ -3,16 +3,17 @@ import Box from '@mui/material/Box'
 import Header from './Header'
 import Footer from './Footer'
 import NormalCard from './Card/NormalCard'
+
 // import CustomCard from './Card/CustomCard'
 // import MediaCard from './Card/MediaCard'
 
 function Column( {column} ) {
-  console.log('(Column) column: ', column)
-  // eslint-disable-next-line react/prop-types
-  console.log('(Column) cards: ', column.cards)
+  // console.log('(Column) column: ', column)
+  // // eslint-disable-next-line react/prop-types
+  // console.log('(Column) cards: ', column.cards)
   return (
     <Box sx={{
-      minWidth: '300px',
+      // minWidth:'300px',
       maxWidth: '300px',
       maxHeight: '100%',
       height: 'fit-content',
