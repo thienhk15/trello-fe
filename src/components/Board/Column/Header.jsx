@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react';
+import NormalCard from './Card/NormalCard'
+
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import ToolTip from '@mui/material/Tooltip'
-import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-
+import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import ExpanmoreIcon from '@mui/icons-material/ExpandMore'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
-
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import OpenWithIcon from '@mui/icons-material/OpenWith'
@@ -20,12 +21,13 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 
 const COLUMN_HEADER_HEIGHT = (theme) => theme.trelloCustom.columnHeaderHeight
 
-function Header() {
+function Header({ toggleCollapse, isCollapsed }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   
   const open = Boolean(anchorEl)
-  const handleClick = (event) => { setAnchorEl(event.currentTarget) }
-  const handleClose = () => { setAnchorEl(null) }
+  const handleClickMenu = (event) => { setAnchorEl(event.currentTarget) }
+  const handleCloseMenu = () => { setAnchorEl(null) }
+
   return (
     <Box  sx={{
       height: COLUMN_HEADER_HEIGHT,
@@ -35,7 +37,7 @@ function Header() {
       justifyContent: 'space-between',
       // fontSize: '1.1rem',
       // fontWeight: 'bold',
-      // transform: 'rotate(90deg)',
+      transform: (isCollapsed ? 'rotate(90deg)' : ''),
     }}>
 
       <Typography variant="h5" component="div" sx={{
@@ -50,20 +52,27 @@ function Header() {
       
       <Box>
 
-        <ToolTip title="Collapse list" placement="bottom"> 
-          <FullscreenExitIcon sx={{color: 'text.primary', cursor: 'pointer'}}
-            id="collapse"
-            aria-controls={open ? 'collapse-list' : undefined}
-          />
+        <ToolTip title={isCollapsed ? 'Expand list' : 'Collapse list'} placement="bottom">         
+            {isCollapsed ? (
+              <UnfoldMoreIcon
+                sx={{ color: 'text.primary', cursor: 'pointer' }}
+                onClick={toggleCollapse}
+              />
+            ) : (
+              <UnfoldLessIcon
+                sx={{ color: 'text.primary', cursor: 'pointer' }}
+                onClick={toggleCollapse}
+              />
+            )}
         </ToolTip>
 
         <ToolTip title="List actions" placement="bottom"> 
-          <ExpanmoreIcon sx={{color: 'text.primary', cursor: 'pointer'}}
+          <ExpanmoreIcon sx={{color: 'text.primary', cursor: 'pointer', display: (isCollapsed ? 'none' : '')}}
             id="basic-column-dropdown"
             aria-controls={open ? 'basic-menu-column-dropdown' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+            onClick={handleClickMenu}
           />
         </ToolTip>
 
@@ -71,7 +80,7 @@ function Header() {
           id="basic-menu-column-dropdown"
           anchorEl={anchorEl}
           open={open}
-          onClose={handleClose}
+          onClose={handleCloseMenu}
           MenuListProps={{
             'aria-labelledby': 'basic-column-dropdown',
           }}

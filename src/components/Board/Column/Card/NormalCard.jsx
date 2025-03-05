@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Checkbox from '@mui/material/Checkbox';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'; // Vòng tròn rỗng
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; // Vòng tròn với dấu check
+import EditIcon from '@mui/icons-material/Edit';
 
 const CARD_HEIGHT = (theme) => theme.trelloCustom.cardHeight
 
@@ -14,6 +15,7 @@ const sxCustom = {
   height: CARD_HEIGHT,
   width: '220px',
   display: 'flex',
+  // display: 'none',
   alignItems: 'center',
   justifyContent: 'flex-start',
   bgcolor: '#EDEDED',
@@ -26,8 +28,6 @@ const sxCustom = {
   '&:hover .checkBox': {
     display: 'block',
   },
-  
-
 }
 function NormalCard({card}) {
   if (!card || !card.name) {
@@ -39,7 +39,6 @@ function NormalCard({card}) {
   // }
 
   const [isChecked, setIsChecked] = useState(false);
-
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
   };
@@ -59,6 +58,8 @@ function NormalCard({card}) {
     }}
     />
       {card.name || 'No name'}
+
+      
     </Box>
   );
 }
