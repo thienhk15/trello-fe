@@ -33,7 +33,7 @@ function BoardContent({ id }) {
     }
 
     fetchColumns()
-  }, [])
+  }, [id])
 
   return (
     <Container disableGutters maxWidth={false}>
