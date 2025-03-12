@@ -6,6 +6,7 @@ import NormalCard from './Card/NormalCard'
 // import CustomCard from './Card/CustomCard'
 // import MediaCard from './Card/MediaCard'
 
+// eslint-disable-next-line react/prop-types
 function Column( {column} ) {
   console.log('(Column) column: ', column)
   // eslint-disable-next-line react/prop-types

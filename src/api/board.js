@@ -1,8 +1,9 @@
 import customAxios from "../utils/customAxios"
 
 const host = import.meta.env.VITE_HOST
-const corePort = import.meta.env.VITE_CORE_PORT
-const coreBaseUrl = `http://${host}:${corePort}`
+const coreUrl = import.meta.env.VITE_CORE_URL
+// const corePort = import.meta.env.VITE_CORE_PORT
+const coreBaseUrl = `http://${host}${coreUrl}`
 
 const boardApi = {
   getAll: () => customAxios.get(`${coreBaseUrl}/boards`),

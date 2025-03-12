@@ -3,27 +3,28 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Column from '../../../components/Board/Column'
 
-import customAxios from '../../../utils/customAxios'
+// import customAxios from '../../../utils/customAxios'
 
 import api from '../../../api'
 
-const protocol = import.meta.env.VITE_PROTOCOL
-const host = import.meta.env.VITE_HOST
-const corePort = import.meta.env.VITE_CORE_PORT 
-// const baseUrl = `http://${host}:${corePort}`
-const baseUrl = `${protocol}://${host}:${corePort}`
+// const host = import.meta.env.VITE_HOST
+// const corePort = import.meta.env.VITE_CORE_PORT 
+// const coreUrl = import.meta.env.VITE_CORE_URL
+// const baseUrl = `http://${host}${coreUrl}`
 
-function BoardContent() {
+// eslint-disable-next-line react/prop-types
+function BoardContent({ id }) {
   const [columns, setColumns] = useState([])
 
   useEffect(() => {
     const fetchColumns = async () => {
       try {
-        const response = await customAxios.get(`${baseUrl}/boards/1`)
-        // const response = await api.board.getById
+        const boardID = id || 1
+        // const response = await customAxios.get(`${baseUrl}/boards/1`)
+        const response = await api.board.getById(boardID)
         const data = response.data
         console.log('(BoardContent) data: ', data)
-        const column = data.data.lists
+        const column = data.data.lists || []
         console.log('(BoardContent) columns: ', column)
         setColumns(column)
       } catch (error) {

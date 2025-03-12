@@ -1,8 +1,9 @@
 import customAxios from "../utils/customAxios"
 
 const host = import.meta.env.VITE_HOST
-const port = import.meta.env.VITE_AUTH_PORT
-const AuthBaseUrl = `http://${host}:${port}`
+// const port = import.meta.env.VITE_AUTH_PORT
+const auth_url = import.meta.env.VITE_AUTH_URL
+const AuthBaseUrl = `http://${host}${auth_url}`
 
 const authApi = {
   login: (body) => customAxios.post(`${AuthBaseUrl}/auth/login`, body),
